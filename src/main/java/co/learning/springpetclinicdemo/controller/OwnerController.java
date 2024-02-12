@@ -3,6 +3,7 @@ package co.learning.springpetclinicdemo.controller;
 import co.learning.springpetclinicdemo.entity.Owner;
 import co.learning.springpetclinicdemo.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ public class OwnerController {
     private OwnerService ownerService;
 
     @GetMapping("/")
+//    @PreAuthorize("hasRole('client_admin')")
     public String viewHomePage(Model model) {
         model.addAttribute("ownerList", ownerService.getAllOwner());
         return "index";
@@ -32,6 +34,7 @@ public class OwnerController {
 
     //shows list of owners
     @GetMapping("/find")
+    @PreAuthorize("hasRole('client_admin')")
     public String findAllOwner(Model model){
         model.addAttribute("listOwners", ownerService.findAllOwners());
         return "findOwners";
@@ -62,10 +65,17 @@ public class OwnerController {
         return "redirect:/";
     }
 
-    @GetMapping("{ownerId}/updateOwner/")
-    public String showFormForUpdate(@PathVariable(value = "ownerId") Integer id, Model model) {
-        Owner owner = ownerService.getOwnerById(id);
-        model.addAttribute("owner", owner);
+//    @GetMapping("{ownerId}/updateOwner/")
+//    public String showFormForUpdate(@PathVariable(value = "ownerId") Integer id, Model model) {
+//        Owner owner = ownerService.getOwnerById(id);
+//        model.addAttribute("owner", owner);
+//        return "updateOwner";
+//    }
+
+    @GetMapping("/owners/{ownerId}/edit")
+    public String initUpdateOwnerForm(@PathVariable("ownerId") int ownerId, Model model) {
+        Owner owner = this.ownerService.getOwnerById(ownerId);
+        model.addAttribute(owner);
         return "updateOwner";
     }
 

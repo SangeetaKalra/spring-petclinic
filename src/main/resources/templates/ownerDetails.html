@@ -36,7 +36,7 @@
             </tr><br>
         </table>
 <!--        <a th:href="@{/owners/{id}(id=${owner.id})}" class="btn btn-primary">Edit Owner</a>-->
-        <a th:href="@{__${owner.id}__/updateOwner}" class="btn btn-primary">Edit Owner</a>
+        <a th:href="@{__${owner.id}__/edit}" class="btn btn-primary">Edit Owner</a>
 
         <!--        <a th:href="@{/owners/{id}(id=${owner.id})}" class="btn btn-primary">Add Pet</a>-->
 <!--        <a th:href="@{/addPet}" class="btn btn-primary"> Add Pet</a>-->
@@ -44,6 +44,23 @@
 <!--        th:href="@{__${owner.id}__/pets/new}-->
 
     </form>
+        <br />
+        <br />
+        <h2>Pets details</h2>
+    <table class="table table-striped">
+
+        <tr th:each="pet : ${owner.pets}">
+            <td valign="top">
+                <dl class="dl-horizontal">
+                    <dt>Name</dt>
+                    <dd th:text="${pet.name}"></dd>
+                    <dt>Birth Date</dt>
+                    <dd th:text="${#temporals.format(pet.birthDate, 'yyyy-MM-dd')}"></dd>
+<!--                    <dt>Type</dt>-->
+<!--                    <dd th:text="${pet.type}"></dd>-->
+                </dl>
+            </td>
+        </table>
     <hr>
     <a th:href="@{/}">Back to Owner List</a>
 </div>
