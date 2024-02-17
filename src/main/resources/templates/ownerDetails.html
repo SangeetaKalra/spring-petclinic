@@ -36,11 +36,11 @@
             </tr><br>
         </table>
 <!--        <a th:href="@{/owners/{id}(id=${owner.id})}" class="btn btn-primary">Edit Owner</a>-->
-        <a th:href="@{__${owner.id}__/edit}" class="btn btn-primary">Edit Owner</a>
+        <a th:href="@{__${owner.id}__/updateOwner}" class="btn btn-primary">Update Owner</a>
 
         <!--        <a th:href="@{/owners/{id}(id=${owner.id})}" class="btn btn-primary">Add Pet</a>-->
 <!--        <a th:href="@{/addPet}" class="btn btn-primary"> Add Pet</a>-->
-        <a th:href="@{|/${owner.id}/addPet|}" class="btn btn-primary">Add Pet</a>
+        <a th:href="@{__${owner.id}__/addPet}" class="btn btn-primary">Add Pet</a>
 <!--        th:href="@{__${owner.id}__/pets/new}-->
 
     </form>

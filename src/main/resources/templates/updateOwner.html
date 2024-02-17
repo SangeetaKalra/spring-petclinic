@@ -14,7 +14,7 @@
     <hr>
     <h2>Update Owner</h2>
 
-    <form class="form-inline" th:action="@{/save-owner}" th:object="${owner}" method="POST">
+    <form class="form-inline" th:action="@{/owners/saveOwner}" th:object="${owner}" method="POST">
         <input type="hidden" th:field="${owner.id}"/>
 
         <label for="firstName">First Name:</label>
@@ -34,7 +34,7 @@
                class="form-control mb-4 col-4"/>
 
         <label for="phone">Phone:</label>
-        <input type="text" id="phone" th:field="${owner.getTelephone}"
+        <input type="text" id="phone" th:field="${owner.telephone}"
                class="form-control mb-4 col-4"/>
 
 <!--        <a th:href="@{__${owner.id}__/save-owner}" class="btn btn-primary">Edit-->

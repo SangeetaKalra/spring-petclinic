@@ -23,11 +23,11 @@ public class OwnerController {
         return "index";
     }
 
-    @GetMapping("/findOwnerByLastName/{lastName}")
+    @GetMapping("/findOwnerByLastName")
     public String findOwnerByLastName(@RequestParam String lastName, Model model) {
         List<Owner> owners = ownerService.findOwnersByLastName(lastName);
         model.addAttribute("owners", owners);
-        return "redirect:/";
+        return "owners/find";
     }
 
     //shows list of owners
@@ -62,7 +62,7 @@ public class OwnerController {
         return "redirect:/";
     }
 
-    @GetMapping("{ownerId}/updateOwner/")
+    @GetMapping("/{ownerId}/updateOwner")
     public String showFormForUpdate(@PathVariable(value = "ownerId") Integer id, Model model) {
         Owner owner = ownerService.getOwnerById(id);
         model.addAttribute("owner", owner);
