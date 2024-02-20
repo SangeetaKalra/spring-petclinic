@@ -13,9 +13,12 @@
     <h2>Find Owners</h2>
     <form th:action="@{/owners/find}" th:object="${owners}" method="get"
           class="form-horizontal" id="search-owner-form">
-
         <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" class="form-control mb-4 col-4"/>
+        <input type="text" id="lastName" name="lastName" th:value="${lastName}" />
+<!--        <label for="lastName">Last Name:</label>-->
+<!--                <input type="text" id="lastName" class="form-control mb-4 col-4"/>-->
+<!--        <label class="col-sm-2 control-label">Last name </label>-->
+<!--        <input class="form-control" th:field="${lastName}"/>-->
 
         <button type="submit" class="btn btn-primary">Find Owner</button>
 <!--        <a th:href="@{/owners/find}" class="btn btn-primary btn-sm mb-3"> Find Owner</a>-->

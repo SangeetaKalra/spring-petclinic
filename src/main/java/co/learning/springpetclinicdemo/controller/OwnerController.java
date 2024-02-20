@@ -5,6 +5,7 @@ import co.learning.springpetclinicdemo.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +27,15 @@ public class OwnerController {
     @GetMapping("/findOwnerByLastName")
     public String findOwnerByLastName(@RequestParam String lastName, Model model) {
         List<Owner> owners = ownerService.findOwnersByLastName(lastName);
-        model.addAttribute("owners", owners);
-        return "owners/find";
+        if(!owners.isEmpty()){
+            model.addAttribute("owner",owners.get(0));
+            return "owners/OwnerDetails";
+        }else {
+            model.addAttribute("owners", ownerService.getAllOwner());
+            return "owners/find";
+        }
+//        model.addAttribute("owners", owners);
+//        return "owners/find";
     }
 
     //shows list of owners

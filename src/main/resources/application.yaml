@@ -12,6 +12,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
 # spring.application.name=PetClinic-APP
 # eureka.client.register-with-eureka=true
