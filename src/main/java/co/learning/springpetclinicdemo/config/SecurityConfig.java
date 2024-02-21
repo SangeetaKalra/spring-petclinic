@@ -12,8 +12,6 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -26,22 +24,10 @@ public class SecurityConfig {
     private final JwtAuthConverter jwtAuthConverter;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf()
-                .disable()
-                .authorizeHttpRequests()
-                .anyRequest()
-                .authenticated();
-
-        http
-                .oauth2ResourceServer()
-                .jwt()
-                .jwtAuthenticationConverter(jwtAuthConverter);
-
-        http
-                .sessionManagement()
-                .sessionCreationPolicy(STATELESS);
+    protected SecurityFilterChain getFilterChainNew(HttpSecurity http) throws Exception {
+        http.csrf(AbstractHttpConfigurer::disable)
+                .oauth2ResourceServer((oauth2Resourceserver) -> oauth2Resourceserver.jwt(
+                        (jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder()).jwtAuthenticationConverter(jwtAuthConverter))));
 
         return http.build();
     }

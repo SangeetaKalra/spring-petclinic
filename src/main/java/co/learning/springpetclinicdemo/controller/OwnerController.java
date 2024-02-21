@@ -34,7 +34,7 @@ public class OwnerController {
 
     //shows list of owners
     @GetMapping("/find")
-    @PreAuthorize("hasRole('client_admin')")
+    @PreAuthorize("hasRole('admin')")
     public String findAllOwner(Model model){
         model.addAttribute("listOwners", ownerService.findAllOwners());
         return "findOwners";
