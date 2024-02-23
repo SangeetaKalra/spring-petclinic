@@ -12,6 +12,8 @@ import java.util.List;
 @Setter
 @Table(name = "pets")
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pet {
 
     @Id
