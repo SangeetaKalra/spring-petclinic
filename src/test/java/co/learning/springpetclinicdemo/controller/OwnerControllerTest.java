@@ -39,7 +39,7 @@ public class OwnerControllerTest {
 
         List<Owner> owners = Arrays.asList(
                 OwnerFactory.createJohnDoe(), OwnerFactory.createJaneSmith());
-        Mockito.when(ownerService.getAllOwner()).thenReturn(owners);
+        Mockito.when(ownerService.getAllOwners()).thenReturn(owners);
 
     }
 

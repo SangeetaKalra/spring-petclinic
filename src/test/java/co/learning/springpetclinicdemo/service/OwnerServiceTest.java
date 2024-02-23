@@ -2,6 +2,7 @@ package co.learning.springpetclinicdemo.service;
 
 import co.learning.springpetclinicdemo.entity.Owner;
 import co.learning.springpetclinicdemo.repository.OwnerRepository;
+import co.learning.springpetclinicdemo.testsupport.factories.OwnerFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -25,7 +26,7 @@ public class OwnerServiceTest {
     @InjectMocks
     private OwnerServiceImpl ownerService;
 
-    Owner owner;
+    Owner owner= OwnerFactory.createJohnDoe();
 
 
     @Test

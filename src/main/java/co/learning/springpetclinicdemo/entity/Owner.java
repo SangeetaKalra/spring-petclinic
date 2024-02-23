@@ -15,7 +15,6 @@ import java.util.Set;
 @ToString
 @Table(name = "owners")
 @Entity
-@Builder
 public class Owner {
 
     @Id

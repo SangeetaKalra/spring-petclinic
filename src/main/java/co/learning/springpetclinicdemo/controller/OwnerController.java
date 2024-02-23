@@ -20,7 +20,7 @@ public class OwnerController {
 
     @GetMapping("/")
     public String viewHomePage(Model model) {
-        model.addAttribute("ownerList", ownerService.getAllOwner());
+        model.addAttribute("ownerList", ownerService.getAllOwners());
         return "index";
     }
 
@@ -31,7 +31,7 @@ public class OwnerController {
             model.addAttribute("owner",owners.get(0));
             return "owners/OwnerDetails";
         }else {
-            model.addAttribute("owners", ownerService.getAllOwner());
+            model.addAttribute("owners", ownerService.getAllOwners());
             return "owners/find";
         }
 //        model.addAttribute("owners", owners);
