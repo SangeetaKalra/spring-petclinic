@@ -5,11 +5,14 @@ import co.learning.springpetclinicdemo.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/owners")
@@ -27,28 +30,26 @@ public class OwnerController {
     @GetMapping("/findOwnerByLastName")
     public String findOwnerByLastName(@RequestParam String lastName, Model model) {
         List<Owner> owners = ownerService.findOwnersByLastName(lastName);
-        if(!owners.isEmpty()){
-            model.addAttribute("owner",owners.get(0));
+        if (!owners.isEmpty()) {
+            model.addAttribute("owner", owners.get(0));
             return "owners/OwnerDetails";
-        }else {
+        } else {
             model.addAttribute("owners", ownerService.getAllOwner());
             return "owners/find";
         }
-//        model.addAttribute("owners", owners);
-//        return "owners/find";
     }
 
     //shows list of owners
     @GetMapping("/find")
-    public String findAllOwner(Model model){
+    public String findAllOwner(Model model) {
         model.addAttribute("listOwners", ownerService.findAllOwners());
         return "findOwners";
     }
 
     @GetMapping("{ownerId}")
-    public String getById(@PathVariable("ownerId")Integer id, Model model){
-        Owner owner=ownerService.getOwnerById(id);
-        model.addAttribute("owner",owner);
+    public String getById(@PathVariable("ownerId") Integer id, Model model) {
+        Owner owner = ownerService.getOwnerById(id);
+        model.addAttribute("owner", owner);
         return "OwnerDetails";
     }
 
