@@ -2,6 +2,7 @@ package co.learning.springpetclinicdemo.controller;
 
 import co.learning.springpetclinicdemo.entity.Owner;
 import co.learning.springpetclinicdemo.service.OwnerService;
+import co.learning.springpetclinicdemo.service.dto.OwnerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,24 +19,13 @@ public class OwnerController {
     @Autowired
     private OwnerService ownerService;
 
-    @GetMapping("/")
-    public String viewHomePage(Model model) {
-        model.addAttribute("ownerList", ownerService.getAllOwners());
-        return "index";
-    }
+
 
     @GetMapping("/findOwnerByLastName")
-    public String findOwnerByLastName(@RequestParam String lastName, Model model) {
-        List<Owner> owners = ownerService.findOwnersByLastName(lastName);
-        if(!owners.isEmpty()){
-            model.addAttribute("owner",owners.get(0));
-            return "owners/OwnerDetails";
-        }else {
-            model.addAttribute("owners", ownerService.getAllOwners());
-            return "owners/find";
-        }
-//        model.addAttribute("owners", owners);
-//        return "owners/find";
+    public List<OwnerDTO> findOwnerByLastName(@RequestParam String lastName) {
+        List<OwnerDTO> owners = ownerService.findOwnersByLastName(lastName);
+        return owners;
+
     }
 
     //shows list of owners
@@ -51,18 +41,6 @@ public class OwnerController {
         model.addAttribute("owner",owner);
         return "OwnerDetails";
     }
-
-    @GetMapping("/addOwner")
-    public String addOwner(Model model) {
-        Owner owner = new Owner();
-        model.addAttribute("owner", owner);
-        return "createOwner";
-    }
-
-//    @PostMapping("/add")
-//    public Owner addOwner(@RequestBody Owner owner){
-//        return ownerService.saveOwner(owner);
-//    }
 
     @PostMapping("/saveOwner")
     public String saveOwner(@ModelAttribute("owner") Owner owner) {

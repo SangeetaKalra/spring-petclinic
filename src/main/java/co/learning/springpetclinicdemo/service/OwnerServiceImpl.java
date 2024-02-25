@@ -3,6 +3,8 @@ package co.learning.springpetclinicdemo.service;
 import co.learning.springpetclinicdemo.entity.Owner;
 import co.learning.springpetclinicdemo.repository.OwnerDAO;
 import co.learning.springpetclinicdemo.repository.OwnerRepository;
+import co.learning.springpetclinicdemo.service.dto.OwnerDTO;
+import co.learning.springpetclinicdemo.service.mapper.OwnerConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +25,10 @@ public class OwnerServiceImpl implements OwnerService{
         this.ownerRepository = ownerRepository;
     }
 
-    public List<Owner> findOwnersByLastName(String lastName) {
+    public List<OwnerDTO> findOwnersByLastName(String lastName) {
 
-        return ownerRepository.findOwnersByLastName(lastName);
+        List<Owner> owners= ownerRepository.findOwnersByLastName(lastName);
+        return OwnerConverter.convert(owners);
     }
 
     public List<Owner> getAllOwners() {
