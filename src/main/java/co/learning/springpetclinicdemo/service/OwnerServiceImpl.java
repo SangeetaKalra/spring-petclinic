@@ -1,6 +1,7 @@
 package co.learning.springpetclinicdemo.service;
 
 import co.learning.springpetclinicdemo.entity.Owner;
+import co.learning.springpetclinicdemo.repository.OwnerDAO;
 import co.learning.springpetclinicdemo.repository.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,10 @@ public class OwnerServiceImpl implements OwnerService{
 
     @Autowired
     private OwnerRepository ownerRepository;
+
+    @Autowired
+    private OwnerDAO ownerDAO;
+
 
     public OwnerServiceImpl(OwnerRepository ownerRepository) {
         this.ownerRepository = ownerRepository;
@@ -40,7 +45,7 @@ public class OwnerServiceImpl implements OwnerService{
 
     public void saveOwner(Owner owner) {
 
-         this.ownerRepository.save(owner);
+         this.ownerDAO.save(owner);
     }
 
     public List<Owner> findAllOwners(){
