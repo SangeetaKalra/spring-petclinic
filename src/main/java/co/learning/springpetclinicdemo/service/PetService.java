@@ -1,6 +1,5 @@
 package co.learning.springpetclinicdemo.service;
 
-import co.learning.springpetclinicdemo.entity.Owner;
 import co.learning.springpetclinicdemo.entity.Pet;
 import co.learning.springpetclinicdemo.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;

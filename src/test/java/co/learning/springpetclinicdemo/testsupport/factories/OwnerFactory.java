@@ -16,8 +16,6 @@ public class OwnerFactory {
                     .telephone("555-1234")
                     .pets(Set.of(new Pet(1, "Cat1", LocalDate.of(1990, 1, 1))))
                     .build();
-
-
     }
 
     public static Owner createJaneSmith() {
@@ -28,8 +26,5 @@ public class OwnerFactory {
                     .telephone("555-5678")
                     .pets(Set.of(new Pet(1, "Cat1", LocalDate.of(1990, 1, 1))))
                     .build();
-
     }
-
-
 }

@@ -14,4 +14,6 @@ public interface OwnerService {
     List<Owner> findAllOwners();
 
     void saveOwner(Owner owner);
+
+    void updateOwner(Owner owner);
 }

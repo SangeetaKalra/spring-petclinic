@@ -2,10 +2,13 @@ package co.learning.springpetclinicdemo.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Set;
-
 
 @Builder
 @Getter
@@ -15,13 +18,16 @@ import java.util.Set;
 @ToString
 @Table(name = "owners")
 @Entity
-public class Owner {
+//@RedisHash("Owner")
+public class Owner implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotBlank
+    @NotEmpty(message = "{owner.firstNamea.empty}")
+    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "{owner.name.notvalid}" )
     private String firstName;
 
     @NotBlank
@@ -40,6 +46,4 @@ public class Owner {
     @JoinColumn(name = "owner_id")
     @OrderBy("name")
     private Set<Pet> pets;
-
-
 }

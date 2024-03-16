@@ -7,7 +7,6 @@ import co.learning.springpetclinicdemo.service.dto.OwnerDTO;
 import co.learning.springpetclinicdemo.service.mapper.OwnerConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -20,19 +19,14 @@ public class OwnerServiceImpl implements OwnerService{
     @Autowired
     private OwnerDAO ownerDAO;
 
-
-    public OwnerServiceImpl(OwnerRepository ownerRepository) {
-        this.ownerRepository = ownerRepository;
+    public List<Owner> findAllOwners(){
+        return ownerRepository.findAll();
     }
 
     public List<OwnerDTO> findOwnersByLastName(String lastName) {
 
         List<Owner> owners= ownerRepository.findOwnersByLastName(lastName);
         return OwnerConverter.convert(owners);
-    }
-
-    public List<Owner> getAllOwners() {
-        return ownerRepository.findAll();
     }
 
     public Owner getOwnerById(Integer id){
@@ -47,12 +41,12 @@ public class OwnerServiceImpl implements OwnerService{
     }
 
     public void saveOwner(Owner owner) {
-
-         this.ownerDAO.save(owner);
+        ownerRepository.save(owner);
     }
 
-    public List<Owner> findAllOwners(){
-        return ownerRepository.findAll();
+    @Override
+    public void updateOwner(Owner owner) {
+        ownerRepository.save(owner);
     }
 
 }

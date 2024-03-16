@@ -6,15 +6,20 @@ server:
 # when app is running in docker
 spring:
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USER_NAME}
-    password: ${DB_PWD}
+      url: ${DB_URL}
+      username: ${DB_USER_NAME}
+      password: ${DB_PWD}
+
   jpa:
     hibernate:
       ddl-auto: none
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+
+
+
+
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher
 
 # spring.application.name=PetClinic-APP
 # eureka.client.register-with-eureka=true

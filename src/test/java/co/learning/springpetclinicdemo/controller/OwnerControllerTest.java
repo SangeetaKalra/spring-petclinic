@@ -3,6 +3,7 @@ package co.learning.springpetclinicdemo.controller;
 
 import co.learning.springpetclinicdemo.entity.Owner;
 import co.learning.springpetclinicdemo.service.OwnerService;
+import co.learning.springpetclinicdemo.service.OwnerServiceImpl;
 import co.learning.springpetclinicdemo.testsupport.factories.OwnerFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,20 +30,17 @@ public class OwnerControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private OwnerService ownerService;
+    private OwnerServiceImpl ownerService;
 
     @InjectMocks
     private OwnerController ownerController;
 
     @BeforeEach
     void setUp() {
-
         List<Owner> owners = Arrays.asList(
                 OwnerFactory.createJohnDoe(), OwnerFactory.createJaneSmith());
-        Mockito.when(ownerService.getAllOwners()).thenReturn(owners);
-
+        Mockito.when(ownerService.findAllOwners()).thenReturn(owners);
     }
-
 
     @Test
     public void testGetAllOwners() throws Exception {
