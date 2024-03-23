@@ -6,11 +6,12 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Set;
 
 @Getter
 @AllArgsConstructor
-public  class OwnerDTO {
+public  class OwnerDTO implements Serializable {
     private int id;
 
     @NotBlank

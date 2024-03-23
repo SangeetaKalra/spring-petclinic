@@ -4,6 +4,7 @@ server:
 # when app is running on host
 # spring.datasource.url=jdbc:mysql://localhost:3306/petclinic
 # when app is running in docker
+
 spring:
   datasource:
       url: ${DB_URL}
@@ -13,6 +14,17 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+
+logging:
+  level:
+    org.springframework.cache.*: trace
+
 
 
 
@@ -26,3 +38,4 @@ spring:
 # service-url=http://localhost:8761/eureka
 # if app is running in docker
 # service-url=http://host.docker.internal:8761/eureka
+

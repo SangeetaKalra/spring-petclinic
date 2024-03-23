@@ -5,11 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class OwnerDAOImpl implements OwnerDAO{
+public class OwnerDAOImpl implements OwnerDAO {
     @Autowired
     private OwnerRepository ownerRepository;
 
@@ -25,8 +24,7 @@ public class OwnerDAOImpl implements OwnerDAO{
 
     @Override
     public List<Owner> findAllOwners() {
-        List<Owner> owners;
-        owners = redisTemplate.opsForHash().values(KEY);
+        List<Owner> owners = ownerRepository.findAll();
         return owners;
     }
 }
