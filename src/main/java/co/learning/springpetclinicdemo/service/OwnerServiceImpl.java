@@ -20,7 +20,8 @@ public class OwnerServiceImpl implements OwnerService{
     private OwnerDAO ownerDAO;
 
     public List<Owner> findAllOwners(){
-        return ownerRepository.findAll();
+        return ownerDAO.findAllOwners();
+//        return ownerRepository.findAll();
     }
 
     public List<OwnerDTO> findOwnersByLastName(String lastName) {
@@ -40,13 +41,15 @@ public class OwnerServiceImpl implements OwnerService{
         return owner;
     }
 
-    public void saveOwner(Owner owner) {
-        ownerRepository.save(owner);
+    public Owner saveOwner(Owner owner) {
+        return ownerRepository.save(owner);
+
     }
 
     @Override
     public void updateOwner(Owner owner) {
-        ownerRepository.save(owner);
+         ownerRepository.save(owner);
     }
+
 
 }

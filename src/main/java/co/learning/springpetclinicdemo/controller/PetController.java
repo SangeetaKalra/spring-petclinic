@@ -5,15 +5,12 @@ import co.learning.springpetclinicdemo.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/owners/{ownerId}")
+@RestController
+@RequestMapping("/pets/")
 public class PetController {
 
     @Autowired
@@ -32,9 +29,8 @@ public class PetController {
         return "redirect:/owners/{ownerId}";
     }
 
-    public String getAllPets(Model model) {
-        List<Pet> pets = petService.getAllPets();
-        model.addAttribute("pets", pets);
-        return "petList";
+    @GetMapping("/findAllPets")
+    public List<Pet> getAllPets() {
+        return petService.getAllPets();
     }
 }

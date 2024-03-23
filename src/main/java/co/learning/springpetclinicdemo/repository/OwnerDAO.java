@@ -13,6 +13,8 @@ public interface OwnerDAO {
     public Owner save(Owner owner);
 
 //    boolean saveUser(Owner owner);
-//
-//    List<Owner> findAllOwners();
+
+    List<Owner> findAllOwners();
+
+
 }

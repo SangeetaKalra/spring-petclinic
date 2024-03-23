@@ -27,10 +27,10 @@ public class Owner implements Serializable {
 
     @NotBlank
     @NotEmpty(message = "{owner.firstNamea.empty}")
-    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "{owner.name.notvalid}" )
+    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "{firstName.pattern}" )
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "{lastName.empty}")
     private String lastName;
 
     @NotBlank

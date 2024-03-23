@@ -2,6 +2,7 @@ package co.learning.springpetclinicdemo.service;
 
 import co.learning.springpetclinicdemo.entity.Owner;
 import co.learning.springpetclinicdemo.service.dto.OwnerDTO;
+import org.aspectj.weaver.ast.Var;
 
 import java.util.List;
 
@@ -13,7 +14,9 @@ public interface OwnerService {
 
     List<Owner> findAllOwners();
 
-    void saveOwner(Owner owner);
+    Owner saveOwner(Owner owner);
 
     void updateOwner(Owner owner);
+
+
 }
